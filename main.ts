@@ -12,5 +12,13 @@ input.onGesture(Gesture.TiltRight, function () {
 })
 let Player: game.LedSprite = null
 basic.showIcon(IconNames.Pitchfork)
+game.setScore(0)
 Player = game.createSprite(0, 0)
-let Enemy = game.createSprite(randint(1, 4), randint(1, 4))
+let Enemy = game.createSprite(randint(0, 4), randint(0, 4))
+basic.forever(function () {
+    if (Player.isTouching(Enemy)) {
+        Enemy.delete()
+        game.addScore(1)
+        Enemy = game.createSprite(randint(0, 4), randint(0, 4))
+    }
+})
